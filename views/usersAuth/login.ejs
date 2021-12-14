@@ -1,0 +1,37 @@
+<div class="modal fade" style="border-radius: 15px;" id="loginModal" data-bs-backdrop="static" 
+data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fw-bold" id="staticBackdropLabel">Login to your account</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="POST" class="validated-form login_form text-center" novalidate>
+          <div >                
+              </div>
+              <img class="img-fluid" style="border-radius: 15px; " src="https://images.unsplash.com/photo-1580115465903-0e4a824a4e9a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80">
+              
+            <div class="mb-3 mt-3">
+              <input class="form-control" type="text" id="username" name="username" placeholder="Enter your Username"required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+          
+            <div class="mb-3">
+              <input class="form-control" type="password" id="password" name="password" placeholder="Enter the password"required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            
+              <p><button class="btn btn-warning submit col-md-12" >Login</button></p>
+              
+            </form>
+              <p class="reg_message mt-4 text-center" >Not <a class="btn btn-sm btn-primary" type="button"
+                data-bs-toggle="modal" data-bs-target="#registerModal">registered</a> yet?</p>     
+      </div>
+    </div>
+  </div>
+</div>

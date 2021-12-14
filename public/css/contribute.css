@@ -1,0 +1,117 @@
+body{
+    background-color: rgb(211, 212, 241);
+}
+
+.mail{
+ color:rgb(0, 110, 255);
+ transition:500ms;
+}
+.mail:hover{
+    font-size: 25px;
+    color:rgb(0, 52, 119);
+    font-weight: bolder;
+}
+@media (min-width: 800px) {
+    .product {
+       display:flex;
+        }
+        .product .left{
+           min-width: 50%;
+            margin: 0 auto 60px;
+        }
+        .product right{
+            flex: 100%;
+        }
+    }
+    @media (max-width: 770px) {
+        .product .right{
+            margin-top: 30px;
+         }
+         .product img{
+             height:70%;
+             width:auto
+         }
+        }
+
+.display_meds{
+    background-color: rgb(211, 212, 241);
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+}
+.display_meds .row .shadow{
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:90%;
+}
+.display_text{
+    font-size: 30px;
+}
+.contribute{
+    background-color: rgb(97, 145, 204);
+    color:rgb(255, 255, 255);
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px; 
+}
+.dots{
+    position: relative;
+    content: '';
+    background-color: rgb(29, 77, 37);
+    border-radius: 5px;
+    margin-top: 30px;
+    font-size: 0;    
+    padding: 5px;
+    width:3px;
+  margin-left: 10px;
+}
+.dot{
+    display: flex;
+  justify-content: center;
+}
+.right{
+    border-radius: 50px;
+    padding:20px;
+    align-self: center;
+    font-size: large;
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
+    border-width: 10px;
+}
+.image{
+    display:block;
+    height:50vh;
+    border-radius: 150px 6%;
+    margin-top: 2%;
+    width:auto;
+    box-shadow: 5px 10px 30px;
+}
+
+.searchInput{
+    border-radius: 15px;
+    height: 40px;
+    width: 50%;
+    font-size: large;
+    background-color: white;
+    border-color: rgb(85, 14, 107);
+}
+
+option{
+background-color: aliceblue;
+}
+
+.searchButton{
+    text-decoration: none;
+    border-radius: 25px;
+    border-color: rgb(85, 14, 107);
+    background-color: white;
+    transition: 500ms;
+    font-weight: bold;
+}
+
+.searchButton:hover{
+text-shadow: 0.25px 0.25px 0.5px #000000;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}

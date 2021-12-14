@@ -1,0 +1,122 @@
+<%- include('../base/header')%>
+
+<%- include('../base/navbar')%>
+<body>
+    <link rel="stylesheet" href="/css/contribute.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+<div class="container p-3 product" >
+    <div class="left">
+        <img class="image img-fluid mt-5" src="https://cdn.dribbble.com/users/398490/screenshots/4865340/mom-dribbble.gif">
+    </div>
+   <div class="border border-primary right ">
+      <h3 class="text-center"><i class="fas fa-hands-helping"></i>   Our Mission</h3>
+      <p class="text-center">A web Page where people who have recovered from a disease, can share their left out medicines, which are no more of use to them in first place. This will help contributing medicines to those needy people who live in rural areas or can't afford to buy medicines</p>
+   </div>
+</div>
+
+<div class="dot">
+     <div class="dots"></div>
+     <div class="dots"></div>
+     <div class="dots"></div>
+    </div>
+
+<div class="container main_product">
+    <div class="border border-primary display_meds"> 
+            <h2 class="display_text">Here are some of the medicines that might benefit you!</h2>
+            <form class="pt-4" action="/Contributes" method="GET">
+                    <input class="searchInput p-3" list="search" type="search" name="search" placeholder="Enter a medicine name">
+                        <datalist id="search">
+                            <% for(let Contribute of Contributes) { %>
+                                <option value="<%= Contribute.medname %>"></option>
+                                <% }%>
+                        </datalist>
+                    <input class="searchButton px-3 p-1" type="submit" value="Search" class="btn-sm">
+            </form>
+           <div class="row pt-5">             
+              <div class="shadow border p-3 mb-3 border-success bg-light bg-gradient text-success" style="overflow-x:auto;">
+                <table class="table table-hover" >
+                    <thead>
+                      <tr>
+                        <th scope="col">Sl No.</th>
+                        <th scope="col">Name of Contributer</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Medicine</th>
+                        <th scope="col">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% var i=1;%>
+                        <% for(let Contribute of Contributes) { %>
+                      <tr>
+                        <th scope="row"><%=i%></th>
+                        <td>  <h3><a class="btn btn-outline-primary" href="/user/<%= Contribute.author.id %>"><%= Contribute.author.username %></a></h3></td>
+                        <td><p><%= Contribute.author.email %> <a class="mail" href="mailto:<%= Contribute.author.email %>" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                          </svg></a></p></td>
+                        <td><%= Contribute.medname %>
+                            <%  if( currentUser && Contribute.author.equals(currentUser._id))  {%>
+                                    <form class="d-inline" action="/Contributes/<%=Contribute._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-sm btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                          </svg></button>
+                                    </form>
+                                <% } %>
+                        </td>
+                        <td><%= Contribute.medAmount %></td>
+                      </tr>
+                      <% i++;}%>
+                        
+                    </tbody>
+                  </table>
+                  <div class="col-md-12 py-3 pt-2">
+                    <% if(noMatch !== null) { %>
+                    <h4><%= noMatch %></h4>
+                    <a class="btn btn-info mt-2" href="/Contributes">Other Medicines</a>
+                    <a class="btn btn-warning mt-2" 
+                      <%  if( currentUser )  {%>
+                      href="/Contributes/new"
+                      <% } else { %>
+                        type="button" 
+                        class="btn btn-primary" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#loginModal"
+                        <% } %>>Contribute</a>
+                    <% } %>
+                </div>
+              </div>
+           </div>
+     </div>
+  
+     <div class="dot">
+     <div class="dots"></div>
+     <div class="dots"></div>
+     <div class="dots"></div>
+    </div>
+</div>
+<div class="container ">
+     <div class="contribute border border-primary">
+        <h2 class="display_text"><i class="fas fa-hand-holding-medical text-danger"></i> Help others by Contributing</h2>
+        <div class="container text-center rounded">
+            <p>Contribute your left out medicines to save others lives</p>
+            <p><a class="btn btn-warning mt-2" 
+              <%  if( currentUser )  {%>
+              href="/Contributes/new"
+              <% } else { %>
+                type="button" 
+                class="btn btn-primary" 
+                data-bs-toggle="modal" 
+                data-bs-target="#loginModal"
+                <% } %>>Contribute</a></p>
+        </div>
+    </div>
+</div>
+</body>
+
+<!--LOGIN-->
+<%- include('../usersAuth/login')%>
+<!---->
+
+<%- include('../base/footer')%>
